@@ -1,0 +1,4 @@
+**
+!build/libs
+!application.conf
+!Dockerfile
