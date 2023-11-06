@@ -1,0 +1,18 @@
+[versions]
+checkstyle = "10.12.4"
+spotbugs = "4.8.0"
+pmd = "7.0.0-rc4"
+jacoco = "0.8.9"
+
+[libraries]
+junit-platform = "org.junit:junit-bom:5.10.1"
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
+pmd-java = { module = "net.sourceforge.pmd:pmd-java", version.ref = "pmd" }
+pmd-ant = { module = "net.sourceforge.pmd:pmd-ant", version.ref = "pmd" }
+
+[plugins]
+shadowJar = "com.github.johnrengelman.shadow:8.1.1"
+spotbugs = "com.github.spotbugs:6.0.0-rc.2"
+docker = "com.bmuschko.docker-remote-api:9.3.6"
+sonarqube =  "org.sonarqube:4.4.1.3373"
