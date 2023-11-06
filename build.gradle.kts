@@ -63,7 +63,7 @@ dependencies {
 }
 
 application {
-  mainClass = "io.github.cakelier.Main"
+  mainClass = "io.github.cakelier.AppMain"
 }
 
 tasks {

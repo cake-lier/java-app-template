@@ -8,6 +8,10 @@ import java.util.HashSet;
 public class ExampleTest {
     @Test
     public void emptySetShouldHaveSizeZero() {
-        Assertions.assertEquals(new HashSet<>().size(), 0);
+        Assertions.assertEquals(
+            new HashSet<>().size(),
+            0,
+            "Empty set should have size 0"
+        );
     }
 }
