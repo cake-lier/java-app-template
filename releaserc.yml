@@ -1,0 +1,64 @@
+branches:
+  - main
+plugins:
+  - - '@semantic-release/commit-analyzer'
+    - preset: conventionalcommits
+  - '@semantic-release/release-notes-generator'
+  - '@semantic-release/changelog'
+  - - '@google/semantic-release-replace-plugin'
+    - replacements:
+        - files:
+            - build.gradle.kts
+          from: version = .*
+          to: version = "${nextRelease.version}"
+          results:
+            - file: build.gradle.kts
+              hasChanged: true
+              numMatches: 1
+              numReplacements: 1
+          countMatches: true
+        - files:
+            - package.json
+          from: '\"version\": \".*\"'
+          to: '"version": "${nextRelease.version}"'
+          results:
+            - file: package.json
+              hasChanged: true
+              numMatches: 1
+              numReplacements: 1
+          countMatches: true
+        - files:
+            - package-lock.json
+          from: '\"name\": \"java-app-template\",\n  \"version\": \".*\"'
+          to: "\"name\": \"java-app-template\",\n  \"version\": \"${nextRelease.version}\""
+          results:
+            - file: package-lock.json
+              hasChanged: true
+              numMatches: 1
+              numReplacements: 1
+          countMatches: true
+        - files:
+            - package-lock.json
+          from: '\"name\": \"java-app-template\",\n      \"version\": \".*\"'
+          to: "\"name\": \"java-app-template\",\n      \"version\": \"${nextRelease.version}\""
+          results:
+            - file: package-lock.json
+              hasChanged: true
+              numMatches: 1
+              numReplacements: 1
+          countMatches: true
+  - - '@semantic-release/exec'
+    - publishCmd: |
+        ./gradlew pushImage
+      shell: /bin/bash
+  - - '@semantic-release/git'
+    - assets:
+        - build.gradle.kts
+        - README.md
+        - CHANGELOG.md
+        - package.json
+        - package-lock.json
+  - - '@semantic-release/github'
+    - assets:
+        - path: build/libs/main.jar
+          label: Main JAR file

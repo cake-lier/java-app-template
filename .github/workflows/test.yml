@@ -1,0 +1,68 @@
+name: Test
+
+on:
+  push:
+    branches-ignore:
+      - main
+      - renovate/configure
+    paths-ignore:
+      - CHANGELOG.md
+      - README.md
+      - CONTRIBUTING.md
+      - LICENSE
+      - renovate.json
+      - ".github/workflows/**"
+      - .releaserc.yml
+      - "package*.json"
+      - .dockerignore
+      - Dockerfile
+  workflow_call:
+    secrets:
+      CODECOV_TOKEN:
+        description: "Codecov token"
+        required: true
+      SONAR_TOKEN:
+        description: "Sonar token"
+        required: true
+
+jobs:
+  test:
+    name: Build and test
+    runs-on: ubuntu-22.04
+    env:
+      TERM: dumb
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup java environment
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+      - name: Run checks and tests, collect coverage
+        run: ./gradlew check
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
+          flags: unittests
+          name: codecov-umbrella
+          verbose: true
+      - name: Sonarcloud scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew sonar --info

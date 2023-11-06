@@ -1,0 +1,27 @@
+{
+  "name": "java-app-template",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cake-lier/java-app-template.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/cake-lier/java-app-template/issues"
+  },
+  "homepage": "https://github.com/cake-lier/java-app-template#readme",
+  "dependencies": {
+    "@google/semantic-release-replace-plugin": "1.2.7",
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/exec": "6.0.3",
+    "@semantic-release/git": "10.0.1",
+    "conventional-changelog-conventionalcommits": "7.0.2",
+    "semantic-release": "22.0.0"
+  }
+}
