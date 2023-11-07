@@ -76,18 +76,18 @@ tasks {
   val buildImage = create("buildImage", DockerBuildImage::class) {
     dependsOn(createJarFile)
     inputDir.set(file("."))
-    images.add("matteocastellucci3/$name:$version")
-    images.add("matteocastellucci3/$name:latest")
+    images.add("matteocastellucci3/${project.name}:$version")
+    images.add("matteocastellucci3/${project.name}:latest")
   }
 
   create("pushImage", DockerPushImage::class) {
     dependsOn(buildImage)
-    images.add("matteocastellucci3/$name:$version")
-    images.add("matteocastellucci3/$name:latest")
+    images.add("matteocastellucci3/${project.name}:$version")
+    images.add("matteocastellucci3/${project.name}:latest")
   }
 
   check {
-    dependsOn(jacocoTestReport)
+    finalizedBy(jacocoTestReport)
   }
 
   test {
