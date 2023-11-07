@@ -1,4 +1,4 @@
-package io.cakelier.github;
+package io.github.cakelier;
 
 public final class AppMain {
     private AppMain() { }
