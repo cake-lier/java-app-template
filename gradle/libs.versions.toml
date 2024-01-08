@@ -13,6 +13,6 @@ pmd-ant = { module = "net.sourceforge.pmd:pmd-ant", version.ref = "pmd" }
 
 [plugins]
 shadowJar = "com.github.johnrengelman.shadow:8.1.1"
-spotbugs = "com.github.spotbugs:6.0.5"
+spotbugs = "com.github.spotbugs:6.0.6"
 docker = "com.bmuschko.docker-remote-api:9.4.0"
 sonarqube =  "org.sonarqube:4.4.1.3373"
