@@ -5,7 +5,7 @@ pmd = "7.0.0-rc4"
 jacoco = "0.8.9"
 
 [libraries]
-junit-platform = "org.junit:junit-bom:5.10.5"
+junit-platform = "org.junit:junit-bom:5.13.3"
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
 spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
 pmd-java = { module = "net.sourceforge.pmd:pmd-java", version.ref = "pmd" }
